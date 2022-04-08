@@ -1,6 +1,7 @@
 #ifndef TERRAIN_H
 #define TERRAIN_H
 
+#include "PerlinNoise.h"
 
 #include <vector>
 #include <glad/glad.h>
@@ -15,6 +16,7 @@ public:
 	Terrain();
 	unsigned int getVAO();
 	int getSize();
+	double cycleOctave(glm::vec3 pos, int no_Octaves);
 	
 	
 private:
@@ -26,6 +28,7 @@ private:
 	void makeVertices(std::vector<float> *vertices);
 	void makeVertex(int x, int y, std::vector<float> *vertices);
 	std::vector<float> getVertices();
+	Perlin noise;
 };
 #endif
 

@@ -45,6 +45,26 @@ int Terrain::getSize() {
 	return vertices.size();
 }
 
+double Terrain::cycleOctave(glm::vec3 pos, int no_Octaves)
+{
+	float total = 0.f;
+	float maxAmp = 0.f;
+	float amp = 100.f;
+	float freq = 0.01f;
+
+	for (int i = 0; i < no_Octaves; i++)
+	{
+		double x = pos.x * freq;
+		double y = pos.y * freq;
+
+		total = noise.noise(x, y, 0.1)*amp;
+		maxAmp += amp;
+		freq *= 2;
+		amp /= 2;
+	}
+	return total/maxAmp;
+}
+
 
 std::vector<float> Terrain::getVertices() {
 	return vertices;
@@ -61,24 +81,10 @@ void Terrain::makeVertices(std::vector<float> *vertices) {
 		   f _ e
 			 \ |
 			   d
-
-		 c == d
-		 b == f
-		 Duplicate vertices but easier in long run! (tesselation and LOD)
-
-		a = (x,y,z)
-		b = (x, y+1)
-		c = (x+1,y)
-
-		d = (x+1,y)
-		e = (x, y+1)
-		f = (x+1,y+1)
-
-		 each vertex a, b,c, etc. will have 5 data:
-		 x y z u v
 		  */
 
-	for (int y = 0; y < height - 1; y++) {
+	for (int y = 0; y < height - 1; y++)
+	{
 		float  offSetY = y * stepSize;
 		for (int x = 0; x < width - 1; x++) {
 			float offSetX = x * stepSize;
@@ -94,9 +100,10 @@ void Terrain::makeVertices(std::vector<float> *vertices) {
 
 void Terrain::makeVertex(int x, int y, std::vector<float> *vertices) {
 
+	double pNoise = noise.noise(x, y, 0.2);
 	//x y z position
 	vertices->push_back((float)x); //xPos
-	vertices->push_back(0.0f); //yPos - always 0 for now. Going to calculate this on GPU - can change to calclaute it here.
+	vertices->push_back(pNoise); //yPos - always 0 for now. Going to calculate this on GPU - can change to calclaute it here.
 	vertices->push_back((float)y); //zPos
 
    // add texture coords

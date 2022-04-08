@@ -13,6 +13,15 @@
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
+    <Filter Include="Resource Files\Normal">
+      <UniqueIdentifier>{0efc9fc6-dccb-4e93-aa7a-4f061d5b8cbb}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Resource Files\Terrain">
+      <UniqueIdentifier>{262f17af-5e94-4391-8319-b524a24829d6}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Resource Files\Water">
+      <UniqueIdentifier>{3c831634-51af-4601-b894-1f74b92b39b1}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="include\Camera.h">
@@ -31,6 +40,15 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="include\Terrain.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="include\WaterFB.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="include\Water.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="include\PerlinNoise.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
@@ -59,8 +77,53 @@
     <ClCompile Include="src\Shader.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="src\Water.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\WaterFB.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\PerlinNoise.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <None Include="assimp-vc140-mt.dll" />
+    <None Include="..\Shaders\norm\normTES.tes">
+      <Filter>Resource Files\Normal</Filter>
+    </None>
+    <None Include="..\Shaders\norm\normPlainFrag.fs">
+      <Filter>Resource Files\Normal</Filter>
+    </None>
+    <None Include="..\Shaders\norm\normPlainGeo.gs">
+      <Filter>Resource Files\Normal</Filter>
+    </None>
+    <None Include="..\Shaders\norm\normPlainVert.vs">
+      <Filter>Resource Files\Normal</Filter>
+    </None>
+    <None Include="..\Shaders\Water\waterVert.vs">
+      <Filter>Resource Files\Water</Filter>
+    </None>
+    <None Include="..\Shaders\Water\waterFrag.fs">
+      <Filter>Resource Files\Water</Filter>
+    </None>
+    <None Include="..\Shaders\Terrain\plainVert.vs">
+      <Filter>Resource Files\Terrain</Filter>
+    </None>
+    <None Include="..\Shaders\Terrain\TES.tes">
+      <Filter>Resource Files\Terrain</Filter>
+    </None>
+    <None Include="..\Shaders\Terrain\plainFrag.fs">
+      <Filter>Resource Files\Terrain</Filter>
+    </None>
+    <None Include="..\Shaders\Terrain\plainGeo.gs">
+      <Filter>Resource Files\Terrain</Filter>
+    </None>
+    <None Include="..\shaders\norm\normTCS.tcs">
+      <Filter>Resource Files\Normal</Filter>
+    </None>
+    <None Include="..\shaders\Terrain\TCS.tcs">
+      <Filter>Resource Files\Terrain</Filter>
+    </None>
   </ItemGroup>
 </Project>

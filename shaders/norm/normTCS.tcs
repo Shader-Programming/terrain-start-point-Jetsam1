@@ -1,0 +1,39 @@
+#version 450 core
+
+layout (vertices=3) out;
+
+in vec3 fragPos[];
+in vec2 texCoords[];
+
+uniform vec3 camPos;
+
+out vec3 posTC[];
+out vec2 texCoordsTC[];
+
+float getTessellationLevel(float dist0, float dist1)
+{
+	float avgDist=(dist0+dist1)  /2.f;
+	
+	float tessellationLevel=exp(-0.01f*avgDist)*100.f;
+	if(tessellationLevel>1.f) return tessellationLevel;
+	else return 1.f;
+}
+
+void main()
+{
+	float eyeToVertexDist0= distance(camPos,fragPos[0]);
+	float eyeToVertexDist1= distance(camPos,fragPos[1]);
+	float eyeToVertexDist2= distance(camPos,fragPos[2]);
+
+	if(gl_InvocationID == 0)
+	{
+		//tessellation level calculations
+		gl_TessLevelOuter[0]=getTessellationLevel(eyeToVertexDist1,eyeToVertexDist2);
+		gl_TessLevelOuter[1]=getTessellationLevel(eyeToVertexDist2,eyeToVertexDist0);
+		gl_TessLevelOuter[2]=getTessellationLevel(eyeToVertexDist0,eyeToVertexDist1);
+		gl_TessLevelInner[0]=gl_TessLevelOuter[2] ;
+	}
+
+	posTC[gl_InvocationID] = fragPos[gl_InvocationID];
+	texCoordsTC[gl_InvocationID]=texCoords[gl_InvocationID];
+}

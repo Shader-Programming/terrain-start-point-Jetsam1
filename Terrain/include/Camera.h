@@ -56,8 +56,9 @@ public:
 	void ProcessMouseMovement(float xoffset, float yoffset);
 	// Processes input received from a mouse scroll-wheel event. Only requires input on the vertical wheel-axis
 	void ProcessMouseScroll(float yoffset);
-
-private:
+	//inverts pitch of the camera
+	inline void InvertPitch() { Pitch = -Pitch; }
+//private:
 	// Calculates the front vector from the Camera's (updated) Euler Angles
 	void updateCameraVectors();
 
