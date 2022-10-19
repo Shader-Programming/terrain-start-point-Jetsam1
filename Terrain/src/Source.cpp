@@ -102,7 +102,7 @@ int main()
 
 	unsigned int heightMap = 0;
 	//Terrain Constructor ; number of grids in width, number of grids in height, gridSize
-	Terrain terrain(30, 30,60);
+	Terrain terrain(300, 300,60);
 	terrainVAO = terrain.getVAO();
 
 	WaterFB waterfb(SCR_WIDTH, SCR_HEIGHT);

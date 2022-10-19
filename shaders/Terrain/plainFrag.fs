@@ -44,7 +44,7 @@ void main()
 	vec3 ambient = colour * light.amb;
 	
 	//Diffuse
-	float diff = max(dot(-normal, lightDir), 0.0f);
+	float diff = max(dot(normal, -light.pos), 0.0f);
 	vec3 diffuse = (diff * colour) * light.diff;
 	
 	//Specular
